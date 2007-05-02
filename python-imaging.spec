@@ -13,7 +13,7 @@ URL:		http://www.pythonware.com/products/pil/
 
 Source0:	http://www.pythonware.com/downloads/Imaging-%{version}.tar.bz2 
 Source1:	pil-handbook.pdf.bz2
-Icon:		linux-python-paint-icon.gif
+Source2:	linux-python-paint-icon.gif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	python >= 1.5, libjpeg >= 6b,  zlib >= 1.1.2, libpng >= 1.0.1, tkinter
 BuildRequires:	python-devel >= 1.5, jpeg-devel >= 6b, png-devel >= 1.0.1

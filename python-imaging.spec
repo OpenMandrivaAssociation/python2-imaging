@@ -1,7 +1,7 @@
 %define pyver %(python -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
 %define name python-imaging
 %define version 1.1.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	Python's own image processing library 
 Name:		%{name}
@@ -17,7 +17,7 @@ Source2:	linux-python-paint-icon.gif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	python >= 1.5, libjpeg >= 6b,  zlib >= 1.1.2, libpng >= 1.0.1, tkinter
 BuildRequires:	python-devel >= 1.5, jpeg-devel >= 6b, png-devel >= 1.0.1
-BuildRequires:	XFree86-devel freetype2-devel tkinter tcl tcl-devel tk tk-devel
+BuildRequires:	XFree86-devel freetype2-devel tkinter tcl tcl-devel tk tk-devel >= 8.5
 
 %description
 Python Imaging Library version %{version}
@@ -71,8 +71,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr (-,root,root)
 %doc pil-handbook.pdf Scripts Images Sane CHANGES* README
-%{_bindir}/*
-%py_platsitedir/*
+%{_bindir}/pil*.py
+%py_platsitedir/PIL.pth
+%dir %py_platsitedir/PIL
+%py_platsitedir/PIL/*.egg-info
+%py_platsitedir/PIL/*.py*
+%py_platsitedir/PIL/_imaging.so
+%py_platsitedir/PIL/_imagingft.so
+%py_platsitedir/PIL/_imagingmath.so
+%py_platsitedir/PIL/_imagingtk.so
 
 %files devel
 %defattr (-,root,root)

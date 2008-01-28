@@ -18,6 +18,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	python >= 1.5, libjpeg >= 6b,  zlib >= 1.1.2, libpng >= 1.0.1, tkinter
 BuildRequires:	python-devel >= 1.5, jpeg-devel >= 6b, png-devel >= 1.0.1
 BuildRequires:	X11-devel freetype2-devel tkinter tcl tcl-devel tk tk-devel >= 8.5
+BuildRequires:	libsane-devel
 
 %description
 Python Imaging Library version %{version}

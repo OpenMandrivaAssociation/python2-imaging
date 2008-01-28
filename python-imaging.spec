@@ -1,7 +1,7 @@
 %define pyver %(python -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
 %define name python-imaging
 %define version 1.1.6
-%define release %mkrel 2
+%define release %mkrel 3
 
 Summary:	Python's own image processing library 
 Name:		%{name}
@@ -54,23 +54,30 @@ perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 %build
 python setup.py build_ext -i
+cd Sane
+python setup.py build_ext -i
 
 %install
-rm -fr $RPM_BUILD_ROOT
+rm -fr %{buildroot}
 
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
-python setup.py install --root=$RPM_BUILD_ROOT
+python setup.py install --root=%{buildroot}
 cd libImaging
-mkdir -p  $RPM_BUILD_ROOT%{_includedir}/python%{pyver}/
-install -m 644 ImPlatform.h Imaging.h $RPM_BUILD_ROOT%{_includedir}/python%{pyver}/
+mkdir -p  %{buildroot}%{_includedir}/python%{pyver}/
+install -m 644 ImPlatform.h Imaging.h %{buildroot}%{_includedir}/python%{pyver}/
+cd ..
+
+cd Sane
+python setup.py install --root=%{buildroot}
+cd ..
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr (-,root,root)
-%doc pil-handbook.pdf Scripts Images Sane CHANGES* README
+%doc pil-handbook.pdf Scripts Images CHANGES* README
 %{_bindir}/pil*.py
 %py_platsitedir/PIL.pth
 %dir %py_platsitedir/PIL
@@ -80,6 +87,10 @@ rm -rf $RPM_BUILD_ROOT
 %py_platsitedir/PIL/_imagingft.so
 %py_platsitedir/PIL/_imagingmath.so
 %py_platsitedir/PIL/_imagingtk.so
+%py_platsitedir/_sane.so
+%py_platsitedir/pysane-2.0-py2.5.egg-info
+%py_platsitedir/sane.py
+%py_platsitedir/sane.pyc
 
 %files devel
 %defattr (-,root,root)

@@ -1,7 +1,7 @@
 %define pyver %(python -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
 %define name python-imaging
 %define version 1.1.6
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary:	Python's own image processing library 
 Name:		%{name}

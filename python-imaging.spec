@@ -1,16 +1,12 @@
 %define pyver %(python -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
-%define name python-imaging
-%define version 1.1.6
-%define release %mkrel 4
 
 Summary:	Python's own image processing library 
-Name:		%{name}
-Version: 	%{version}
-Release: 	%{release}
-License:	MIT style
+Name:		python-imaging
+Version: 	1.1.6
+Release: 	%{mkrel 5}
+License:	MIT
 Group:		Development/Python
 URL:		http://www.pythonware.com/products/pil/
-
 Source0:	http://www.pythonware.com/downloads/Imaging-%{version}.tar.bz2 
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif

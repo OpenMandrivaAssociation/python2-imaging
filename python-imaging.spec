@@ -86,7 +86,7 @@ rm -rf %{buildroot}
 %py_platsitedir/PIL/_imagingmath.so
 %py_platsitedir/PIL/_imagingtk.so
 %py_platsitedir/_sane.so
-%py_platsitedir/pysane-2.0-py2.5.egg-info
+%py_platsitedir/*.egg-info
 %py_platsitedir/sane.py
 %py_platsitedir/sane.pyc
 

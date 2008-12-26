@@ -3,7 +3,7 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
 Version: 	1.1.6
-Release: 	%{mkrel 5}
+Release: 	%{mkrel 6}
 License:	MIT
 Group:		Development/Python
 URL:		http://www.pythonware.com/products/pil/
@@ -11,6 +11,7 @@ Source0:	http://www.pythonware.com/downloads/Imaging-%{version}.tar.bz2
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+%py_requires -d
 Requires:	python >= 1.5, libjpeg >= 6b,  zlib >= 1.1.2, libpng >= 1.0.1, tkinter
 BuildRequires:	python-devel >= 1.5, jpeg-devel >= 6b, png-devel >= 1.0.1
 BuildRequires:	X11-devel freetype2-devel tkinter tcl tcl-devel tk tk-devel >= 8.5

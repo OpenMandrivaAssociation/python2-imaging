@@ -3,7 +3,7 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
 Version: 	1.1.6
-Release: 	%mkrel 7
+Release: 	%mkrel 8
 License:	MIT
 Group:		Development/Python
 URL:		http://www.pythonware.com/products/pil/

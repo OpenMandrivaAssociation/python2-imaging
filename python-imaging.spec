@@ -2,12 +2,12 @@
 
 Summary:	Python's own image processing library 
 Name:		python-imaging
-Version: 	1.1.6
-Release: 	%mkrel 8
+Version: 	1.1.7
+Release: 	%mkrel 1
 License:	MIT
 Group:		Development/Python
 URL:		http://www.pythonware.com/products/pil/
-Source0:	http://www.pythonware.com/downloads/Imaging-%{version}.tar.bz2 
+Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -82,6 +82,7 @@ rm -rf %{buildroot}
 %py_platsitedir/PIL/*.egg-info
 %py_platsitedir/PIL/*.py*
 %py_platsitedir/PIL/_imaging.so
+%py_platsitedir/PIL/_imagingcms.so
 %py_platsitedir/PIL/_imagingft.so
 %py_platsitedir/PIL/_imagingmath.so
 %py_platsitedir/PIL/_imagingtk.so
@@ -89,7 +90,6 @@ rm -rf %{buildroot}
 %py_platsitedir/*.egg-info
 %py_platsitedir/sane.py
 %py_platsitedir/sane.pyc
-
 %files devel
 %defattr (-,root,root)
 %{_includedir}/python%{pyver}/Imaging.h

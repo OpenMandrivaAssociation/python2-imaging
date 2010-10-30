@@ -1,5 +1,3 @@
-%define pyver %(python -V 2>&1 | cut -f2 -d" " | cut -f1,2 -d".")
-
 Summary:	Python's own image processing library 
 Name:		python-imaging
 Version: 	1.1.7
@@ -89,8 +87,7 @@ rm -rf %{buildroot}
 %py_platsitedir/PIL/_imagingtk.so
 %py_platsitedir/_sane.so
 %py_platsitedir/*.egg-info
-%py_platsitedir/sane.py
-%py_platsitedir/sane.pyc
+%py_platsitedir/sane.py*
 %files devel
 %defattr (-,root,root)
 %{_includedir}/python%{pyver}/Imaging.h

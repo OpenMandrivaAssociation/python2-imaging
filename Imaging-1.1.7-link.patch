@@ -1,0 +1,20 @@
+--- setup.py.link	2011-01-01 05:33:54.000000000 +0100
++++ setup.py	2011-01-01 05:34:26.000000000 +0100
+@@ -289,7 +289,7 @@
+         for file in LIBIMAGING:
+             files.append(os.path.join("libImaging", file + ".c"))
+ 
+-        libs = []
++        libs = ["m"]
+         defs = []
+         if feature.jpeg:
+             libs.append(feature.jpeg)
+@@ -361,7 +361,7 @@
+                 ))
+ 
+         if os.path.isfile("_imagingmath.c"):
+-            exts.append(Extension("_imagingmath", ["_imagingmath.c"]))
++            exts.append(Extension("_imagingmath", ["_imagingmath.c"], libraries=["m"]))
+ 
+         self.extensions[:] = exts
+ 

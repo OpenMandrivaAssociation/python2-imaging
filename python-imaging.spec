@@ -84,7 +84,7 @@ cd ..
 %py_platsitedir/PIL/*.py*
 %py_platsitedir/PIL/_imaging.so
 %py_platsitedir/PIL/_imagingcms.so
-#%py_platsitedir/PIL/_imagingft.so
+%py_platsitedir/PIL/_imagingft.so
 %py_platsitedir/PIL/_imagingmath.so
 %py_platsitedir/PIL/_imagingtk.so
 %py_platsitedir/_sane.so

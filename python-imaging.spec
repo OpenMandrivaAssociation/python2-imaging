@@ -9,15 +9,15 @@ Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Imaging-1.1.7-link.patch
-Buildrequires:	python-devel
+BuildRequires:	python-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
-BuildRequires:	freetype2-devel
+BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	lcms-devel
 BuildRequires:	libsane-devel
-Buildrequires:	tcl-devel
+BuildRequires:	tcl-devel
 BuildRequires:	tk-devel
-Buildrequires:	zlib-devel
+BuildRequires:	zlib-devel
 BuildRequires:	tkinter
 
 %description
@@ -55,14 +55,15 @@ perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 
 %build
-python setup.py build_ext -i
+CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" python setup.py build_ext -i
 cd Sane
-python setup.py build_ext -i
+CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" python setup.py build_ext -i
 
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
 python setup.py install --root=%{buildroot}
+
 cd libImaging
 mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/
 install -m 644 ImPlatform.h Imaging.h %{buildroot}%{_includedir}/python%{py_ver}/
@@ -82,7 +83,7 @@ cd ..
 %py_platsitedir/PIL/*.py*
 %py_platsitedir/PIL/_imaging.so
 %py_platsitedir/PIL/_imagingcms.so
-%py_platsitedir/PIL/_imagingft.so
+#%py_platsitedir/PIL/_imagingft.so
 %py_platsitedir/PIL/_imagingmath.so
 %py_platsitedir/PIL/_imagingtk.so
 %py_platsitedir/_sane.so

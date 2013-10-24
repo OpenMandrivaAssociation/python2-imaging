@@ -15,7 +15,7 @@ BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	lcms-devel
-BuildRequires:	bsane-devel
+BuildRequires:	sane-devel
 BuildRequires:	tcl-devel
 BuildRequires:	tk-devel
 BuildRequires:	zlib-devel

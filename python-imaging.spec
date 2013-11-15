@@ -1,25 +1,25 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
-Version: 	1.1.7
-Release: 	12
+Version:	1.1.7
+Release:	12
 License:	MIT
 Group:		Development/Python
-URL:		http://www.pythonware.com/products/pil/
+Url:		http://www.pythonware.com/products/pil/
 Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Imaging-1.1.7-link.patch
-BuildRequires:	python-devel
 BuildRequires:	python-pkg-resources
-BuildRequires:	jpeg-devel
-BuildRequires:	png-devel
-BuildRequires:	pkgconfig(freetype2)
-BuildRequires:	lcms-devel
-BuildRequires:	sane-devel
-BuildRequires:	tcl-devel
-BuildRequires:	tk-devel
-BuildRequires:	zlib-devel
 BuildRequires:	tkinter
+BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(freetype2)
+BuildRequires:	pkgconfig(lcms)
+BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(sane-backends)
+BuildRequires:	pkgconfig(tcl)
+BuildRequires:	pkgconfig(tk)
+BuildRequires:	pkgconfig(zlib)
 
 %description
 Python Imaging Library version %{version}
@@ -33,13 +33,13 @@ internal representation, and powerful image processing capabilities.
 %package devel
 Summary:	Header files for python-imaging
 Group:		Development/C
-Requires:	python-imaging = %{version}
+Requires:	python-imaging = %{version}-%{release}
 
 %description devel
 Header files for the Python Imaging Library version %{version}.
 
 %prep
-%setup -q -n Imaging-%{version}
+%setup -qn Imaging-%{version}
 %patch0 -p0
 bzcat %SOURCE1 > pil-handbook.pdf
 
@@ -53,7 +53,6 @@ bzcat %SOURCE1 > pil-handbook.pdf
 
 # Nuke references to /usr/local
 perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
-
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" python setup.py build_ext -i
@@ -75,24 +74,22 @@ python setup.py install --root=%{buildroot}
 cd ..
 
 %files
-%defattr (-,root,root)
 %doc pil-handbook.pdf Scripts Images CHANGES* README
 %{_bindir}/pil*.py
-%py_platsitedir/PIL.pth
-%dir %py_platsitedir/PIL
-%py_platsitedir/PIL/*.egg-info
-%py_platsitedir/PIL/*.py*
-%py_platsitedir/PIL/_imaging.so
-%py_platsitedir/PIL/_imagingcms.so
-%py_platsitedir/PIL/_imagingft.so
-%py_platsitedir/PIL/_imagingmath.so
-%py_platsitedir/PIL/_imagingtk.so
-%py_platsitedir/_sane.so
-%py_platsitedir/*.egg-info
-%py_platsitedir/sane.py*
+%{py_platsitedir}/PIL.pth
+%dir %{py_platsitedir}/PIL
+%{py_platsitedir}/PIL/*.egg-info
+%{py_platsitedir}/PIL/*.py*
+%{py_platsitedir}/PIL/_imaging.so
+%{py_platsitedir}/PIL/_imagingcms.so
+%{py_platsitedir}/PIL/_imagingft.so
+%{py_platsitedir}/PIL/_imagingmath.so
+%{py_platsitedir}/PIL/_imagingtk.so
+%{py_platsitedir}/_sane.so
+%{py_platsitedir}/*.egg-info
+%{py_platsitedir}/sane.py*
+
 %files devel
-%defattr (-,root,root)
 %{_includedir}/python%{py_ver}/Imaging.h
 %{_includedir}/python%{py_ver}/ImPlatform.h
-
 

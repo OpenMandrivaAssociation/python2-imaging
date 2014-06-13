@@ -1,7 +1,7 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
 Version:	1.1.7
-Release:	16
+Release:	17
 License:	MIT
 Group:		Development/Python
 Url:		http://www.pythonware.com/products/pil/
@@ -9,11 +9,12 @@ Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Imaging-1.1.7-link.patch
+Patch1:		lcms2.diff
 BuildRequires:	python-pkg-resources
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(freetype2)
-BuildRequires:	pkgconfig(lcms)
+BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(sane-backends)
@@ -41,6 +42,7 @@ Header files for the Python Imaging Library version %{version}.
 %prep
 %setup -qn Imaging-%{version}
 %patch0 -p0
+Patch1 -p1
 bzcat %SOURCE1 > pil-handbook.pdf
 
 # fix tk version

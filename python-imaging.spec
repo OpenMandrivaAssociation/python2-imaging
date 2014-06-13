@@ -42,7 +42,7 @@ Header files for the Python Imaging Library version %{version}.
 %prep
 %setup -qn Imaging-%{version}
 %patch0 -p0
-Patch1 -p1
+%patch1 -p1
 bzcat %SOURCE1 > pil-handbook.pdf
 
 # fix tk version

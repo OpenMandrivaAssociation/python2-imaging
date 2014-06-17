@@ -1,0 +1,35 @@
+diff -Naur Imaging-1.1.7/_imagingcms.c Imaging-1.1.7.tpg/_imagingcms.c
+--- Imaging-1.1.7/_imagingcms.c	2009-11-02 11:17:22.000000000 +0000
++++ Imaging-1.1.7.tpg/_imagingcms.c	2014-06-17 17:19:40.559919661 +0000
+@@ -24,7 +24,7 @@
+ "
+ 
+ #include "Python.h"
+-#include "lcms.h"
++#include "lcms2.h"
+ #include "Imaging.h"
+ 
+ #if PY_VERSION_HEX < 0x01060000
+diff -Naur Imaging-1.1.7/setup.py Imaging-1.1.7.tpg/setup.py
+--- Imaging-1.1.7/setup.py	2014-06-17 17:17:53.000000000 +0000
++++ Imaging-1.1.7.tpg/setup.py	2014-06-17 17:20:32.573338464 +0000
+@@ -264,8 +264,8 @@
+                 if dir:
+                     add_directory(self.compiler.include_dirs, dir, 0)
+ 
+-        if find_include_file(self, "lcms.h"):
+-            if find_library_file(self, "lcms"):
++        if find_include_file(self, "lcms2.h"):
++            if find_library_file(self, "lcms2"):
+                 feature.lcms = "lcms"
+ 
+         if _tkinter and find_include_file(self, "tk.h"):
+@@ -328,7 +328,7 @@
+             if sys.platform == "win32":
+                 extra.extend(["user32", "gdi32"])
+             exts.append(Extension(
+-                "_imagingcms", ["_imagingcms.c"], libraries=["lcms"] + extra
++                "_imagingcms", ["_imagingcms.c"], libraries=["lcms2"] + extra
+                 ))
+ 
+         if sys.platform == "darwin":

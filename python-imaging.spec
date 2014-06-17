@@ -9,7 +9,7 @@ Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Imaging-1.1.7-link.patch
-Patch1:		lcms2.diff
+Patch1:		python-imaging-1.1.7-add-lcms2.patch
 BuildRequires:	python-pkg-resources
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
@@ -24,7 +24,7 @@ BuildRequires:	pkgconfig(zlib)
 
 %description
 Python Imaging Library version %{version}
-   
+
 The Python Imaging Library (PIL) adds image processing capabilities 
 to your Python interpreter.
 
@@ -57,9 +57,9 @@ bzcat %SOURCE1 > pil-handbook.pdf
 perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" python setup.py build_ext -i
+CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
 cd Sane
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" python setup.py build_ext -i
+CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
 
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'

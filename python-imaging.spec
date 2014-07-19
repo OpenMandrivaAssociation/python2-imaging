@@ -1,22 +1,26 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
-Version:	1.1.7
-Release:	19
+Version:	2.5.1
+Release:	1
 License:	MIT
 Group:		Development/Python
-Url:		http://www.pythonware.com/products/pil/
-Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
+# Original:
+#Url:		http://www.pythonware.com/products/pil/
+#Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
+# Much better maintained fork:
+Url:		https://pypi.python.org/pypi/Pillow/2.5.1
+Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.zip
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
-Patch0:		Imaging-1.1.7-link.patch
-Patch1:		python-imaging-1.1.7-add-lcms2.patch
+Patch0:		Pillow-2.5.1-link.patch
+Provides:	python-pillow = %{EVRD}
 BuildRequires:	python-pkg-resources
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(libpng)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(sane-backends)
 BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
@@ -34,15 +38,15 @@ internal representation, and powerful image processing capabilities.
 %package devel
 Summary:	Header files for python-imaging
 Group:		Development/C
-Requires:	python-imaging = %{version}-%{release}
+Requires:	python-imaging = %{EVRD}
+Provides:	python-pillow-devel = %{EVRD}
 
 %description devel
 Header files for the Python Imaging Library version %{version}.
 
 %prep
-%setup -qn Imaging-%{version}
-%patch0 -p0
-%patch1 -p1
+%setup -qn Pillow-%{version}
+%apply_patches
 bzcat %SOURCE1 > pil-handbook.pdf
 
 # fix tk version
@@ -76,18 +80,14 @@ python setup.py install --root=%{buildroot}
 cd ..
 
 %files
-%doc pil-handbook.pdf Scripts Images CHANGES* README
+%doc pil-handbook.pdf Scripts CHANGES*
 %{_bindir}/pil*.py
-%{py_platsitedir}/PIL.pth
 %dir %{py_platsitedir}/PIL
-%{py_platsitedir}/PIL/*.egg-info
 %{py_platsitedir}/PIL/*.py*
-%{py_platsitedir}/PIL/_imaging.so
-%{py_platsitedir}/PIL/_imagingcms.so
-%{py_platsitedir}/PIL/_imagingft.so
-%{py_platsitedir}/PIL/_imagingmath.so
-%{py_platsitedir}/PIL/_imagingtk.so
-%{py_platsitedir}/_sane.so
+%{py_platsitedir}/PIL/_imaging*.so
+%{py_platsitedir}/PIL/_webp*.so
+%{py_platsitedir}/PIL/*.md
+%{py_platsitedir}/_sane*.so
 %{py_platsitedir}/*.egg-info
 %{py_platsitedir}/sane.py*
 

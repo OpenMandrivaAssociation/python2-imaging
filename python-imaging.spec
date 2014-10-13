@@ -15,6 +15,7 @@ Source2:	linux-python-paint-icon.gif
 Patch0:		Pillow-2.5.1-link.patch
 Provides:	python-pillow = %{EVRD}
 BuildRequires:	python-pkg-resources
+BuildRequires:	python-setuptools
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(freetype2)

@@ -1,15 +1,15 @@
 Summary:	Python's own image processing library 
 Name:		python-imaging
-Version:	2.5.1
-Release:	3
+Version:	2.8.1
+Release:	1
 License:	MIT
 Group:		Development/Python
 # Original:
 #Url:		http://www.pythonware.com/products/pil/
 #Source0:	http://effbot.org/downloads/Imaging-%{version}.tar.gz
 # Much better maintained fork:
-Url:		https://pypi.python.org/pypi/Pillow/2.5.1
-Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.zip
+Url:		https://pypi.python.org/pypi/Pillow/2.8.1
+Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Pillow-2.5.1-link.patch

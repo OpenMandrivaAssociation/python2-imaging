@@ -65,21 +65,15 @@ perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 %build
 CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
-cd Sane
-CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
 
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
-python setup.py install --root=%{buildroot}
+PYTHONDONTWRITEBYTECODE=True python setup.py install --root=%{buildroot}
 
 cd libImaging
 mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/
 install -m 644 ImPlatform.h Imaging.h %{buildroot}%{_includedir}/python%{py_ver}/
-cd ..
-
-cd Sane
-python setup.py install --root=%{buildroot}
 cd ..
 
 %files
@@ -90,9 +84,7 @@ cd ..
 %{py_platsitedir}/PIL/_imaging*.so
 %{py_platsitedir}/PIL/_webp*.so
 %{py_platsitedir}/PIL/*.md
-%{py_platsitedir}/_sane*.so
 %{py_platsitedir}/*.egg-info
-%{py_platsitedir}/sane.py*
 
 %files devel
 %{_includedir}/python%{py_ver}/Imaging.h

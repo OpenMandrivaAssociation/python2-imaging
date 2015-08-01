@@ -13,7 +13,7 @@ Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.tar.
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Pillow-2.5.1-link.patch
-Provides:	python-pillow = %{EVRD}
+
 BuildRequires:	python-pkg-resources
 BuildRequires:	python2-setuptools
 BuildRequires:	tkinter
@@ -29,7 +29,7 @@ BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
 BuildRequires:	pkgconfig(zlib)
 
-Provides:       pithon2-pillow
+Provides:       pithon2-pillow = %{EVRD}
 
 %description
 Python Imaging Library version %{version}
@@ -66,12 +66,12 @@ bzcat %SOURCE1 > pil-handbook.pdf
 perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 %build
-CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
+CFLAGS="%{optflags} -fno-strict-aliasing" %__python2 setup.py build build_ext -i
 
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
-PYTHONDONTWRITEBYTECODE=True python2 setup.py install --root=%{buildroot}
+PYTHONDONTWRITEBYTECODE=True %__python2 setup.py install --root=%{buildroot}
 
 cd libImaging
 mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/

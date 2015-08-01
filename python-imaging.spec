@@ -29,6 +29,8 @@ BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
 BuildRequires:	pkgconfig(zlib)
 
+Provides:       pithon2-pillow
+
 %description
 Python Imaging Library version %{version}
 
@@ -42,7 +44,7 @@ internal representation, and powerful image processing capabilities.
 Summary:	Header files for python-imaging
 Group:		Development/C
 Requires:	python-imaging = %{EVRD}
-Provides:	python-pillow-devel = %{EVRD}
+Provides:	python2-pillow-devel = %{EVRD}
 
 %description devel
 Header files for the Python Imaging Library version %{version}.

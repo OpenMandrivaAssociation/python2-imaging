@@ -43,7 +43,7 @@ internal representation, and powerful image processing capabilities.
 %package devel
 Summary:	Header files for python-imaging
 Group:		Development/C
-Requires:	python-imaging = %{EVRD}
+Requires:	python2-imaging = %{EVRD}
 Provides:	python2-pillow-devel = %{EVRD}
 
 %description devel

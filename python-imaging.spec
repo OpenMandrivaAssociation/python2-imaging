@@ -14,7 +14,7 @@ Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
 Patch0:		Pillow-2.5.1-link.patch
 
-BuildRequires:	python-pkg-resources
+BuildRequires:	python2-pkg-resources
 BuildRequires:	python2-setuptools
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
@@ -22,7 +22,7 @@ BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libwebp)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	python2-devel
 BuildRequires:	pkgconfig(sane-backends)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(tcl)
@@ -81,7 +81,7 @@ cd ..
 %files
 %doc pil-handbook.pdf Scripts CHANGES*
 %{_bindir}/pil*.py
-%dir %{py_platsitedir}/PIL
+%dir %{py2_platsitedir}/PIL
 %{py2_platsitedir}/PIL/*.py*
 %{py2_platsitedir}/PIL/_imaging*.so
 %{py2_platsitedir}/PIL/_webp*.so

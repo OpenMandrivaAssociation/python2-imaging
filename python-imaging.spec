@@ -1,5 +1,5 @@
 Summary:	Python's own image processing library 
-Name:		python-imaging
+Name:		python2-imaging
 Version:	2.8.1
 Release:	2
 License:	MIT
@@ -15,14 +15,14 @@ Source2:	linux-python-paint-icon.gif
 Patch0:		Pillow-2.5.1-link.patch
 Provides:	python-pillow = %{EVRD}
 BuildRequires:	python-pkg-resources
-BuildRequires:	python-setuptools
+BuildRequires:	python2-setuptools
 BuildRequires:	tkinter
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libwebp)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(sane-backends)
 BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(tcl)
@@ -80,11 +80,11 @@ cd ..
 %doc pil-handbook.pdf Scripts CHANGES*
 %{_bindir}/pil*.py
 %dir %{py_platsitedir}/PIL
-%{py_platsitedir}/PIL/*.py*
-%{py_platsitedir}/PIL/_imaging*.so
-%{py_platsitedir}/PIL/_webp*.so
-%{py_platsitedir}/PIL/*.md
-%{py_platsitedir}/*.egg-info
+%{py2_platsitedir}/PIL/*.py*
+%{py2_platsitedir}/PIL/_imaging*.so
+%{py2_platsitedir}/PIL/_webp*.so
+%{py2_platsitedir}/PIL/*.md
+%{py2_platsitedir}/*.egg-info
 
 %files devel
 %{_includedir}/python%{py_ver}/Imaging.h

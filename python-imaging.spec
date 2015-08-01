@@ -71,7 +71,7 @@ CFLAGS="%{optflags} -fno-strict-aliasing" python setup.py build_ext -i
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
-PYTHONDONTWRITEBYTECODE=True python setup.py install --root=%{buildroot}
+PYTHONDONTWRITEBYTECODE=True python2 setup.py install --root=%{buildroot}
 
 cd libImaging
 mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/

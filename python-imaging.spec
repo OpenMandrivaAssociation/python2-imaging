@@ -1,7 +1,7 @@
 Summary:	Python's own image processing library 
 Name:		python2-imaging
 Version:	2.8.1
-Release:	2
+Release:	3
 License:	MIT
 Group:		Development/Python
 # Original:
@@ -78,9 +78,11 @@ mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/
 install -m 644 ImPlatform.h Imaging.h %{buildroot}%{_includedir}/python%{py_ver}/
 cd ..
 
+# The scripts are packaged in %%doc
+rm -rf %{buildroot}%{_bindir}
+
 %files
 %doc pil-handbook.pdf Scripts CHANGES*
-%{_bindir}/pil*.py
 %dir %{py2_platsitedir}/PIL
 %{py2_platsitedir}/PIL/*.py*
 %{py2_platsitedir}/PIL/_imaging*.so

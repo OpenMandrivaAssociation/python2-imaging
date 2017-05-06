@@ -1,7 +1,7 @@
 Summary:	Python's own image processing library 
 Name:		python2-imaging
-Version:	2.8.1
-Release:	4
+Version:	4.1.1
+Release:	1
 License:	MIT
 Group:		Development/Python
 # Original:
@@ -12,7 +12,6 @@ Url:		https://pypi.python.org/pypi/Pillow/2.8.1
 Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
-Patch0:		Pillow-2.5.1-link.patch
 
 BuildRequires:	python2-pkg-resources
 BuildRequires:	python2-setuptools
@@ -58,7 +57,7 @@ bzcat %SOURCE1 > pil-handbook.pdf
 # perl -p -i -e 's/8.3/8.4/g' Setup.in
 
 # fix distutils problem
-# %patch
+# #patch
 # Make sure to get the right python library
 # perl -pi -e "s,(\\\$\((exec_prefix|prefix|exec_installdir)\)|/usr/X11R6)/lib\b,\1/%{_lib},g" Makefile.pre.in Setup.in
 
@@ -66,12 +65,12 @@ bzcat %SOURCE1 > pil-handbook.pdf
 perl -pi -e "s,(-[IL]/usr/local/(include|lib)),,g" setup.py
 
 %build
-CFLAGS="%{optflags} -fno-strict-aliasing" %__python2 setup.py build build_ext -i
+CFLAGS="%{optflags} -fno-strict-aliasing" %__python2 setup.py build build_ext -i -lm,dl
 
 %install
 find . -type f | xargs perl -pi -e 's@/usr/local/bin/python@/usr/bin/python@'
 
-PYTHONDONTWRITEBYTECODE=True %__python2 setup.py install --root=%{buildroot}
+PYTHONDONTWRITEBYTECODE=True %__python2 setup.py install --root=%{buildroot} build_ext -lm,dl
 
 cd libImaging
 mkdir -p  %{buildroot}%{_includedir}/python%{py_ver}/
@@ -87,7 +86,6 @@ rm -rf %{buildroot}%{_bindir}
 %{py2_platsitedir}/PIL/*.py*
 %{py2_platsitedir}/PIL/_imaging*.so
 %{py2_platsitedir}/PIL/_webp*.so
-%{py2_platsitedir}/PIL/*.md
 %{py2_platsitedir}/*.egg-info
 
 %files devel

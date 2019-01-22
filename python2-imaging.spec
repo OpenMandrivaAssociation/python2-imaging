@@ -1,7 +1,7 @@
 Summary:	Python's own image processing library 
 Name:		python2-imaging
-Version:	5.0.0
-Release:	3
+Version:	5.4.1
+Release:	1
 License:	MIT
 Group:		Development/Python
 # Original:

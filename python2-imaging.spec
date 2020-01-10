@@ -50,7 +50,7 @@ Header files for the Python Imaging Library version %{version}.
 
 %prep
 %setup -qn Pillow-%{version}
-%apply_patches
+%autopatch -p1
 bzcat %SOURCE1 > pil-handbook.pdf
 
 # fix tk version

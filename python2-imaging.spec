@@ -1,6 +1,8 @@
+%define _disable_lto 1
+
 Summary:	Python's own image processing library 
 Name:		python2-imaging
-Version:	5.4.1
+Version:	6.2.2
 Release:	1
 License:	MIT
 Group:		Development/Python
@@ -12,6 +14,7 @@ Url:		https://pypi.python.org/pypi/Pillow/2.8.1
 Source0:	https://pypi.python.org/packages/source/P/Pillow/Pillow-%{version}.tar.gz
 Source1:	pil-handbook.pdf.bz2
 Source2:	linux-python-paint-icon.gif
+Patch0:		pillow-6.1.0-no-Lusrlib.patch
 
 BuildRequires:	python2-pkg-resources
 BuildRequires:	python2-setuptools
